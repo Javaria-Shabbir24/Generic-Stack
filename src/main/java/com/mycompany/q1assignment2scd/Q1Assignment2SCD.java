@@ -111,4 +111,112 @@ public class Q1Assignment2SCD {
             System.out.println("1.Push an element\n2.Pop an element\n3.Check if stack is empty");
             System.out.println("4.Get size of stack\n5.Display stack\n6.Exit");
         }
+    public static void main(String[] args) {
+        
+        try{
+            GenericStack Stack1=new GenericStack();
+            Scanner input=new Scanner(System.in);
+            System.out.print("Enter the size of the stack: ");//at initial stage take input size and values for stack
+            if(input.hasNextInt())
+            {
+            int x=input.nextInt();
+            for(int i=0;i<x;i++)
+            {
+                System.out.print("Enter the values to push: ");
+                if(input.hasNextInt())//if input is an integer
+                {
+                    Stack1.push(input.nextInt());
+                }
+                else if(input.hasNext())//if input is a String
+                {
+                    Stack1.push(input.next());
+                }
+                else if(input.hasNextFloat())//if input is a float
+                {
+                    Stack1.push(input.nextFloat());
+                }
+            }
+            }else
+            {
+                   throw new InvalidInputException("Invalid input exception");
+            }
+        
+        int option=0;
+        while(true)
+        {
+            menu();
+            System.out.print("Choose an option: ");
+            if(input.hasNextInt())//if the option value is eneterd except integer
+            {
+            option=input.nextInt();
+            if(option==1)
+            {
+                System.out.print("Enter the value to push: ");
+                if(input.hasNextInt())//if input is an integer
+                {
+                    Stack1.push(input.nextInt());
+                }
+                else if(input.hasNext())//if input is a String
+                {
+                    Stack1.push(input.next());
+                }
+                else if(input.hasNextFloat())//if input is a float
+                {
+                    Stack1.push(input.nextFloat());
+                }
+            }
+            else if(option==2)
+            {
+                try{
+                    Stack1.pop();
+                    System.out.println("The element popped successfully");
+                }
+                catch(EmptyStackException e)
+                {
+                System.out.println("Exception Message: Empty Stack Exception");
+                }  
+            }
+            else if(option==3)
+            {
+                if(Stack1.isEmpty())
+                {
+                    System.out.println("Stack is Empty");
+                }
+                else
+                {
+                    System.out.println("Stack is not empty");
+                }
+            }
+            else if(option==4)
+            {
+                System.out.println("The size of the stack is: "+Stack1.size());
+            }
+            else if(option==5)
+            {
+                Stack1.display(Stack1.gettop());
+            }
+            else if(option==6)
+            {
+                System.out.println("Program Exited!");
+               break;
+            }
+            else
+            {
+                throw new InvalidInputException("Invalid input exception");
+            }
+            }
+            else
+            {
+                throw new InvalidInputException("Invalid input exception");
+            }
+        }
+        }
+        catch( InvalidInputException | ExceptionHandling e)
+        {
+            System.out.println("Exception Message: "+e.getMessage());
+        }
+        finally{
+            System.out.println("\nExecution completed successfully");
+                }
+    }
 }
